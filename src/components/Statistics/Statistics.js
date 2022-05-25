@@ -13,7 +13,7 @@ function getRandomHex() {
 function Statistics ({title, stats}) {
     return (
         <section className={style.statistics}>
-        {title ? (<h2 className={style.title}>{title}</h2>) : null}
+        {title && <h2 className={style.title}>{title}</h2>}
 
         <ul className={style.stat__list}>
             {
@@ -32,7 +32,10 @@ function Statistics ({title, stats}) {
 
 Statistics.propTypes = {
     title: PropTypes.string,
-    stats: PropTypes.arrayOf(PropTypes.object),
+    stats: PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        percentage: PropTypes.number.isRequired,
+    }),
      
 }
 

@@ -1,37 +1,37 @@
 import PropTypes from 'prop-types';
 import stylen from './FriendListItem.module.css';
-import friends from '../../friends.json';
+
 
 
  
 
-function FriendListItem ({avatar, name, isOnline}) {
-    return (
-        friends.map(friend => (
+function FriendListItem ({id, avatar, name, isOnline}) {
+    return (      
             
-            <li className={stylen.item} key={friend.id}>
-            {friend.isOnline ? <span className={stylen.status}></span> : 
+            <li className={stylen.item} key={id}>
+            {isOnline ? <span className={stylen.status}></span> : 
             <span className={stylen.statusfalse}></span>}      
                 
                 <img
                     className={stylen.avatar}
-                    src={friend.avatar}
+                    src={avatar}
                     alt="User avatar"
                     width="48"
                     />
-                <p className={stylen.name}>{friend.name}</p>
+                <p className={stylen.name}>{name}</p>
                 
                 
             </li>
-        ))
+        
         
     );
 }
 
 FriendListItem.propTypes = {
-    avatar: PropTypes.string,
-    name: PropTypes.string,
-    isOnline: PropTypes.bool
+    id: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    isOnline: PropTypes.bool.isRequired
 }
 
 export default FriendListItem;
